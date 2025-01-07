@@ -19,7 +19,7 @@ function buildMetadata(sample) {
     Object.entries(result).forEach(([key, value]) => {
       d3.select("#sample-metadata")
         .append("h6")
-        .text(`${key.toUpperCase()}: ${value}`);
+        .html(`<strong>${key.toUpperCase()}</strong>: ${value}`);
     });
   });
 }
