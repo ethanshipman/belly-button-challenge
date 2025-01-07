@@ -27,10 +27,10 @@ function buildCharts(sample) {
   d3.json("https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json").then((data) => {
 
     // Get the samples field
-
+    const samples = data.samples;
 
     // Filter the samples for the object with the desired sample number
-
+    const result = samples.filter(sampleObj => sampleObj.id == sample)[0];
 
     // Get the otu_ids, otu_labels, and sample_values
 
@@ -66,13 +66,16 @@ function init() {
     // Use the list of sample names to populate the select options
     // Hint: Inside a loop, you will need to use d3 to append a new
     // option for each sample name.
-
+    sampleNames.forEach(sample => {
+      selector.append("option").text(sample).property("value", sample);
+    })
 
     // Get the first sample from the list
-
-
+    const firstSample = sampleNames[0];
+  
     // Build charts and metadata panel with the first sample
-
+    buildCharts(firstSample);
+    buildMetadata(firstSample);
   });
 }
 
